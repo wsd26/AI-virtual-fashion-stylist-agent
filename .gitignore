@@ -6,6 +6,7 @@ AI虚拟穿搭伙伴agent作品集/
 
 # Next.js
 web-demo/.next/
+web-demo/out/
 web-demo/node_modules/
 
 # IDE

@@ -2,6 +2,8 @@
 
 社区电商场景下的 AI 穿搭助手，嵌入商品详情页，提供虚拟试穿、搭配推荐、社区评价解读、一键发布等能力。
 
+**在线体验**: [https://wsd26.github.io/AI-virtual-fashion-stylist-agent/](https://wsd26.github.io/AI-virtual-fashion-stylist-agent/)
+
 ## 核心功能
 
 - **AI 虚拟试穿** — 5 种场景 × 5 种天气共 25 种组合，实时生成上身效果

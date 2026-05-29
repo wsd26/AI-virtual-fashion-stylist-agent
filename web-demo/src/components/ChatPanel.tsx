@@ -8,6 +8,7 @@ import { mockProduct } from "@/lib/mock";
 import { SessionState } from "@/lib/state/session";
 import { generateOutfitPlans } from "@/lib/agents/explorer";
 import { useUserProfile } from "@/lib/userProfile";
+import { generateAvatar, generateTryOn } from "@/lib/client-api";
 import ChatBubble from "./ChatBubble";
 import WelcomeGuide from "./WelcomeGuide";
 
@@ -58,19 +59,11 @@ export default function ChatPanel({
     setShowWelcome(false);
     setLoading(true);
     try {
-      const res = await fetch("/api/generate-avatar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          ...(replicateKey ? { "x-replicate-key": replicateKey } : {}),
-        },
-        body: JSON.stringify({
-          photos: profile.uploadedPhotos,
-          gender: profile.gender,
-          style: profile.style,
-        }),
-      });
-      const data = await res.json();
+      const data = await generateAvatar(
+        profile.uploadedPhotos,
+        profile.gender,
+        profile.style,
+      );
       if (data.avatarUrl) {
         setGeneratedAvatar(data.avatarUrl);
       }
@@ -107,20 +100,7 @@ export default function ChatPanel({
       if (!personImage) return;
 
       try {
-        const res = await fetch("/api/tryon", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            ...(replicateKey ? { "x-replicate-key": replicateKey } : {}),
-          },
-          body: JSON.stringify({
-            personImage,
-            productImage: productImageUrl,
-            scene,
-            weather,
-          }),
-        });
-        const data = await res.json();
+        const data = await generateTryOn(personImage, productImageUrl, scene, weather);
         const imageUrl = data.imageUrl || "";
 
         setMessages((prev) =>
