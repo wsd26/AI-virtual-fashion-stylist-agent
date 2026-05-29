@@ -1,0 +1,13 @@
+# 作品集（不上传）
+AI虚拟穿搭伙伴agent作品集/
+
+# macOS
+.DS_Store
+
+# Next.js
+web-demo/.next/
+web-demo/node_modules/
+
+# IDE
+.vscode/
+.idea/
